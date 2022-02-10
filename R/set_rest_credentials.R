@@ -12,7 +12,11 @@
 #' @param path An optional path if different than the WordPress default.
 #'
 #' @examples
-#' set_rest_credentials( site_url = 'https://example.com', site_user = 'WPUser', site_password = 'ABCD EFGH IJKL MNOP' )
+#' set_rest_credentials(
+#'     site_url = 'https://example.com',
+#'     site_user = 'WPUser',
+#'     site_password = 'ABCD EFGH IJKL MNOP'
+#' )
 #' @export
 #' @importFrom glue glue
 #' @importFrom base64enc base64encode

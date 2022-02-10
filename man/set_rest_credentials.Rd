@@ -28,5 +28,9 @@ An application password must be created in WordPress for the user who
 is publishing the content.
 }
 \examples{
-set_rest_credentials( site_url = 'https://example.com', site_user = 'WPUser', site_password = 'ABCD EFGH IJKL MNOP' )
+set_rest_credentials(
+    site_url = 'https://example.com',
+    site_user = 'WPUser',
+    site_password = 'ABCD EFGH IJKL MNOP'
+)
 }

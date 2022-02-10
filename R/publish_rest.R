@@ -20,7 +20,12 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom glue glue
 #' @importFrom xfun file_string
-publish_rest <- function(file, post_title, post_id = 0, post_status = "publish") {
+publish_rest <- function(
+    file,
+    post_title,
+    post_id = 0,
+    post_status = "publish"
+) {
     html_content <- render(
         file,
         output_format = "html_fragment"
@@ -28,10 +33,12 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
 
     rest_post_url <- getOption(
         "RESTPostURL",
-        stop("Set a site URL with set_REST_credentials")
+        stop("Set a site URL with set_rest_credentials")
     )
 
-    if ( post_id > 0 ) {
+    # If a post ID is specified, we'll assume this is an update and append
+    # the value to the REST URL.
+    if (post_id > 0) {
         rest_post_url <- glue("{rest_post_url}/{post_id}")
     }
 
@@ -46,7 +53,7 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
         stop("Set an authentication header with set_REST_credentials")
     )
 
-    response<-POST(
+    response <- POST(
         rest_post_url,
         body = body,
         encode = "json",
@@ -55,10 +62,15 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
         )
     )
 
+    # It was feeling like content() was taking quite a while to generate JSON
+    # data from the response and using jsonlite _felt_ better.
     text_response <- content(response, as = "text")
     json_response <- fromJSON(text_response)
 
-    json_response$content<-NULL
+    # For large documents, this content property gets very heavy as there are
+    # rendered and raw versions included. By nulling it out, we can clear a
+    # bit of memory, I think.
+    json_response$content <- NULL
 
     cat(
         glue("Post ID: {json_response$id}"),
