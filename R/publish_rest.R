@@ -19,7 +19,7 @@
 #' @importFrom httr verbose
 #' @importFrom glue glue
 #' @importFrom xfun file_string
-publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
+publish_rest <- function(file, post_title, post_id = 0, post_status = "publish") {
     html_content <- render(
         file,
         output_format = "html_fragment"
@@ -32,13 +32,12 @@ publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
 
     if ( post_id > 0 ) {
         rest_post_url <- glue("{rest_post_url}/{post_id}")
-        print(rest_post_url)
     }
 
     body <- list(
         title = post_title,
         content = file_string(html_content),
-        status = status
+        status = post_status
     )
 
     auth_key <- getOption(
@@ -52,7 +51,12 @@ publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
         encode = "json",
         add_headers(
             Authorization = glue("Basic {auth_key}")
-        ),
-        verbose()
+        )
+    )
+
+    cat(
+        glue("Post ID: {response_data[['id']]}"),
+        "\n",
+        glue("Link: {response_data[['link']]}")
     )
 }
