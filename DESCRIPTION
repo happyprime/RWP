@@ -1,8 +1,7 @@
 Package: RWP
 Title: Publish Content with the WordPress REST API
 Version: 1.0.4.01
-Authors@R:
-    person("Jeremy", "Felt", "jeremy@happyprime.co", role = c("aut", "cre"))
+Authors@R: person("Jeremy", "Felt", email = "jeremy@happyprime.co", role = c("aut", "cre"))
 Description: Publishes HTML fragments converted with rmarkdown to WordPress
     via the WordPress REST API.
 License: use_gpl_license()
