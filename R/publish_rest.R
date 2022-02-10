@@ -24,9 +24,19 @@ publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
         output_format = "html_fragment"
     )
 
+    rest_post_url <- getOption(
+        "RESTPostURL",
+        stop("Set a site URL with set_REST_credentials")
+    )
+
+    if ( post_id > 0 ) {
+        rest_post_url <- glue("{rest_post_url}/{post_id}")
+    }
+
     body <- list(
         title = post_title,
         content = file_string(html_content)
+        status = status
     )
 
     auth_key <- getOption(
@@ -35,10 +45,7 @@ publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
     )
 
     response_data <- POST(
-        getOption(
-            "RESTPostURL",
-            stop("Set a site URL with set_REST_credentials")
-        ),
+        rest_post_url,
         body = body,
         encode = "json",
         add_headers(
@@ -46,13 +53,13 @@ publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
         )
     )
 
-	response_data <- content(response_data)
+    response_data <- content(response_data)
 
-	cat(
-		glue("Post ID: {response_data[['id']]}"),
-		"\n",
-		glue("Post title: {response_data[['title']]}"),
-		"\n",
-		glue("Link: {response_data[['link']]}")
-	)
+    cat(
+        glue("Post ID: {response_data[['id']]}"),
+        "\n",
+        glue("Post title: {response_data[['title']]}"),
+        "\n",
+        glue("Link: {response_data[['link']]}")
+    )
 }
