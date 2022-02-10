@@ -22,7 +22,7 @@ set_rest_credentials(
 }
 \description{
 Stores a set of credentials to use when publishing content
-             using the WordPress REST API.
+using the WordPress REST API.
 
 An application password must be created in WordPress for the user who
 is publishing the content.
