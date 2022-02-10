@@ -16,6 +16,7 @@
 #' @importFrom httr POST
 #' @importFrom httr add_headers
 #' @importFrom httr content
+#' @importFrom httr verbose
 #' @importFrom glue glue
 #' @importFrom xfun file_string
 publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
@@ -31,6 +32,7 @@ publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
 
     if ( post_id > 0 ) {
         rest_post_url <- glue("{rest_post_url}/{post_id}")
+        print(rest_post_url)
     }
 
     body <- list(
@@ -50,16 +52,7 @@ publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
         encode = "json",
         add_headers(
             Authorization = glue("Basic {auth_key}")
-        )
-    )
-
-    response_data <- content(response_data)
-
-    cat(
-        glue("Post ID: {response_data[['id']]}"),
-        "\n",
-        glue("Post title: {response_data[['title']]}"),
-        "\n",
-        glue("Link: {response_data[['link']]}")
+        ),
+        verbose()
     )
 }
