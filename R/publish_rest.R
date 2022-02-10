@@ -8,7 +8,7 @@
 #' @param post_id A post ID to update with the HTML content.
 #' @param post_status The WordPress post status to assign. Default "publish".
 #'
-#' @return Nothing?
+#' @return Response data from an httr::POST request.
 #' @examples
 #' publish_rest(file = 'current_file.Rmd', post_title = 'My post title')
 #' @export
@@ -45,7 +45,7 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
         stop("Set an authentication header with set_REST_credentials")
     )
 
-    response_data <- POST(
+    POST(
         rest_post_url,
         body = body,
         encode = "json",
@@ -53,6 +53,4 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
             Authorization = glue("Basic {auth_key}")
         )
     )
-
-    cat(response_data$ID, response_data$link, sep = "\n")
 }

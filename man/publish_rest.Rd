@@ -16,7 +16,7 @@ publish_rest(file, post_title, post_id = 0, post_status = "publish")
 \item{post_status}{The WordPress post status to assign. Default "publish".}
 }
 \value{
-Nothing?
+Response data from an httr::POST request.
 }
 \description{
 Renders an R Markdown document into an HTML fragment and
