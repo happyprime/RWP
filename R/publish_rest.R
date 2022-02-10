@@ -45,7 +45,7 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
         stop("Set an authentication header with set_REST_credentials")
     )
 
-    POST(
+    response<-POST(
         rest_post_url,
         body = body,
         encode = "json",
@@ -53,4 +53,6 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
             Authorization = glue("Basic {auth_key}")
         )
     )
+
+    return(response)
 }
