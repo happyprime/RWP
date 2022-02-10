@@ -54,9 +54,12 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
         )
     )
 
-    cat(
-        glue("Post ID: {response_data[['id']]}"),
-        "\n",
-        glue("Link: {response_data[['link']]}")
+    response_data <- list(
+        content(response_data),
+        id,
+        link,
+        title
     )
+
+    print(response_data)
 }
