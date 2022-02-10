@@ -54,12 +54,5 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
         )
     )
 
-    response_data <- list(
-        content(response_data),
-        id,
-        link,
-        title
-    )
-
-    print(response_data)
+    cat(response_data$ID, response_data$link, sep = "\n")
 }
