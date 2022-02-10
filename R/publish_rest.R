@@ -17,7 +17,7 @@
 #' @importFrom httr add_headers
 #' @importFrom httr content
 #' @importFrom httr verbose
-#' @importFrom jsonlit fromJSON
+#' @importFrom jsonlite fromJSON
 #' @importFrom glue glue
 #' @importFrom xfun file_string
 publish_rest <- function(file, post_title, post_id = 0, post_status = "publish") {
