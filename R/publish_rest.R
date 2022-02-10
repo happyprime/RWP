@@ -6,7 +6,7 @@
 #' @param file The path and file name of an R Markdown document.
 #' @param post_title The title that should be used for the post.
 #' @param post_id A post ID to update with the HTML content.
-#' @param status The WordPress post status to assign. Default "publish".
+#' @param post_status The WordPress post status to assign. Default "publish".
 #'
 #' @return Nothing?
 #' @examples

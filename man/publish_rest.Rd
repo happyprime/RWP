@@ -4,7 +4,7 @@
 \alias{publish_rest}
 \title{publish_rest}
 \usage{
-publish_rest(file, post_title, post_id = 0, status = "publish")
+publish_rest(file, post_title, post_id = 0, post_status = "publish")
 }
 \arguments{
 \item{file}{The path and file name of an R Markdown document.}
@@ -13,7 +13,7 @@ publish_rest(file, post_title, post_id = 0, status = "publish")
 
 \item{post_id}{A post ID to update with the HTML content.}
 
-\item{status}{The WordPress post status to assign. Default "publish".}
+\item{post_status}{The WordPress post status to assign. Default "publish".}
 }
 \value{
 Nothing?
