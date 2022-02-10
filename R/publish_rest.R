@@ -17,6 +17,7 @@
 #' @importFrom httr add_headers
 #' @importFrom httr content
 #' @importFrom httr verbose
+#' @importFrom jsonlit fromJSON
 #' @importFrom glue glue
 #' @importFrom xfun file_string
 publish_rest <- function(file, post_title, post_id = 0, post_status = "publish") {
@@ -54,5 +55,16 @@ publish_rest <- function(file, post_title, post_id = 0, post_status = "publish")
         )
     )
 
-    return(response)
+    text_response <- content(response, as = "text")
+    json_response <- fromJSON(text_response)
+
+    json_response$content<-NULL
+
+    cat(
+        glue("Post ID: {json_response$id}"),
+        glue("Link: {json_response$link}"),
+        sep = "\n"
+    )
+
+    return(json_response)
 }
