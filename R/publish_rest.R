@@ -35,7 +35,7 @@ publish_rest <- function(file, post_title, post_id = 0, status = "publish") {
 
     body <- list(
         title = post_title,
-        content = file_string(html_content)
+        content = file_string(html_content),
         status = status
     )
 
