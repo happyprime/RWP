@@ -8,11 +8,28 @@ install_github("happyprime/RWP")
 library("RWP")
 ```
 
+## Development
+
+```
+install.packages("devtools")
+install.packages("roxygen2")
+library("devtools")
+library("roxygen2")
+install_local("./")
+library("lintr")
+document();
+lintr("R/update_post.R")
+lintr("R/set_rest_credentials.R")
+```
+
+
+`brew install libgit2`
+
 ## Unique Functions
 
 ### set_rest_credentials( site_url, site_user, site_password )
 
-### publish_rest( file, post_title, post_id = 0, post_status = "publish" )
+### update_post( file, post_title, post_id = 0, post_status = "publish" )
 
 ## History
 

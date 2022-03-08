@@ -1,4 +1,4 @@
-#' @title publish_rest
+#' @title update_post
 #'
 #' @description Renders an R Markdown document into an HTML fragment and
 #' publishes the HTML as a post in WordPress using the WordPress REST API.
@@ -10,7 +10,7 @@
 #'
 #' @return Response data from an httr::POST request.
 #' @examples
-#' publish_rest(file = 'current_file.Rmd', post_title = 'My post title')
+#' update_post(file = 'current_file.Rmd', post_title = 'My post title')
 #' @export
 #' @importFrom rmarkdown render
 #' @importFrom httr POST
@@ -20,7 +20,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom glue glue
 #' @importFrom xfun file_string
-publish_rest <- function(
+update_post <- function(
     file,
     post_title,
     post_id = 0,
