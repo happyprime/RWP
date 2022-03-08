@@ -45,7 +45,8 @@ update_post <- function(
     body <- list(
         title = post_title,
         content = file_string(html_content),
-        status = post_status
+        status = post_status,
+        meta = list(rwp_generated = TRUE)
     )
 
     auth_key <- getOption(

@@ -20,13 +20,20 @@ library("roxygen2")
 library("lintr")
 
 install_local("./")
+library("RWP")
 
-document();
+document()
 lint("R/update_post.R")
 lint("R/set_rest_credentials.R")
 ```
 
 I had a weird issue in Mac OS Monterey and had to `brew install libgit2` before `devtools` (specifically `usethis`) would install.
+
+### Local testing
+
+```
+install_local( "./" )
+```
 
 ## Unique Functions
 
