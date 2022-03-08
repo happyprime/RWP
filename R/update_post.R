@@ -28,10 +28,10 @@ update_post <- function(
     post_status = "publish",
     output = TRUE
 ) {
-    html_content <- render(
+    html_content <- file_string(render(
         file,
         output_format = "html_fragment"
-    )
+    ))
 
     rest_post_url <- getOption(
         "RESTPostURL",
@@ -46,9 +46,12 @@ update_post <- function(
 
     body <- list(
         title = post_title,
-        content = file_string(html_content),
+        content = html_content,
         status = post_status,
-        meta = list(rwp_generated = TRUE)
+        meta = list(
+            rwp_generated = TRUE,
+            rwp_tabset = grepl(".tabset", html_content, fixed = TRUE)
+        )
     )
 
     auth_key <- getOption(
