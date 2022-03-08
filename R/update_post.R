@@ -59,13 +59,28 @@ update_post <- function(
         stop("Set an authentication header with set_REST_credentials")
     )
 
+    local_mode <- getOption(
+        "RWPLocal",
+        FALSE
+    )
+
+    if (local_mode == TRUE) {
+        httr_config <- httr::config(
+            ssl_verifypeer = FALSE,
+            ssl_verifyhost = FALSE
+        )
+    } else {
+        httr_config <- NULL
+    }
+
     response <- POST(
         rest_post_url,
         body = body,
         encode = "json",
         add_headers(
             Authorization = glue("Basic {auth_key}")
-        )
+        ),
+        config = httr_config
     )
 
     # It was feeling like content() was taking quite a while to generate JSON
