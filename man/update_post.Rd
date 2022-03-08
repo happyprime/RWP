@@ -4,7 +4,13 @@
 \alias{update_post}
 \title{update_post}
 \usage{
-update_post(file, post_title, post_id = 0, post_status = "publish")
+update_post(
+  file,
+  post_title,
+  post_id = 0,
+  post_status = "publish",
+  output = TRUE
+)
 }
 \arguments{
 \item{file}{The path and file name of an R Markdown document.}
@@ -14,9 +20,11 @@ update_post(file, post_title, post_id = 0, post_status = "publish")
 \item{post_id}{A post ID to update with the HTML content.}
 
 \item{post_status}{The WordPress post status to assign. Default "publish".}
+
+\item{output}{Whether to output post ID/link or return a response object.}
 }
 \value{
-Response data from an httr::POST request.
+No return by default. Response from httr::POST request if specified.
 }
 \description{
 Renders an R Markdown document into an HTML fragment and

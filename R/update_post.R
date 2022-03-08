@@ -7,8 +7,9 @@
 #' @param post_title The title that should be used for the post.
 #' @param post_id A post ID to update with the HTML content.
 #' @param post_status The WordPress post status to assign. Default "publish".
+#' @param output Whether to output post ID/link or return a response object.
 #'
-#' @return Response data from an httr::POST request.
+#' @return No return by default. Response from httr::POST request if specified.
 #' @examples
 #' update_post(file = 'current_file.Rmd', post_title = 'My post title')
 #' @export
@@ -24,7 +25,8 @@ update_post <- function(
     file,
     post_title,
     post_id = 0,
-    post_status = "publish"
+    post_status = "publish",
+    output = TRUE
 ) {
     html_content <- render(
         file,
@@ -73,11 +75,13 @@ update_post <- function(
     # bit of memory, I think.
     json_response$content <- NULL
 
-    cat(
-        glue("Post ID: {json_response$id}"),
-        glue("Link: {json_response$link}"),
-        sep = "\n"
-    )
-
-    return(json_response)
+    if (output == TRUE) {
+        cat(
+            glue("Post ID: {json_response$id}"),
+            glue("Link: {json_response$link}"),
+            sep = "\n"
+        )
+    } else {
+        return(json_response)
+    }
 }
