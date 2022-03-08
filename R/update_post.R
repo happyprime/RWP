@@ -50,7 +50,7 @@ update_post <- function(
         status = post_status,
         meta = list(
             rwp_generated = TRUE,
-            rwp_tabset = grepl(".tabset", html_content, fixed = TRUE)
+            rwp_tabset = grepl("tabset", html_content, fixed = TRUE)
         )
     )
 
