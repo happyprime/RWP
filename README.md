@@ -13,17 +13,20 @@ library("RWP")
 ```
 install.packages("devtools")
 install.packages("roxygen2")
+install.packages("lintr")
+
 library("devtools")
 library("roxygen2")
-install_local("./")
 library("lintr")
+
+install_local("./")
+
 document();
-lintr("R/update_post.R")
-lintr("R/set_rest_credentials.R")
+lint("R/update_post.R")
+lint("R/set_rest_credentials.R")
 ```
 
-
-`brew install libgit2`
+I had a weird issue in Mac OS Monterey and had to `brew install libgit2` before `devtools` (specifically `usethis`) would install.
 
 ## Unique Functions
 
