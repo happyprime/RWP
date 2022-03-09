@@ -8,6 +8,8 @@ install_github("happyprime/RWP")
 library("RWP")
 ```
 
+Note: the `devtools` package is only required so that `install_github()` is available. This requirement will drop once this package is officially published.
+
 ## Usage
 
 RWP provides two functions: `set_rest_credentials` and `update_post`.
@@ -61,6 +63,8 @@ update_post( 'filename.Rmd', 'The post title', post_id = 49995, post_status = 'd
 
 ## Development
 
+A few libraries are required to aid with development of this package.
+
 ```
 install.packages("devtools")
 install.packages("roxygen2")
@@ -78,19 +82,17 @@ lint("R/update_post.R")
 lint("R/set_rest_credentials.R")
 ```
 
-I had a weird issue in Mac OS Monterey and had to `brew install libgit2` before `devtools` (specifically `usethis`) would install.
+### Caveats
+
+* I had a weird issue in Mac OS Monterey and had to `brew install libgit2` before `devtools` (specifically `usethis`) would install.
 
 ### Local testing
 
 ```
+unload( "RWP" )
 install_local( "./" )
+library( "RWP" )
 ```
-
-## Unique Functions
-
-### set_rest_credentials( site_url, site_user, site_password )
-
-### update_post( file, post_title, post_id = 0, post_status = "publish" )
 
 ## History
 
