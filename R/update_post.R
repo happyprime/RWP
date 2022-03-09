@@ -64,6 +64,7 @@ update_post <- function(
         FALSE
     )
 
+    # Disable SSL verification if intentionally flagged as a local environment.
     if (local_mode == TRUE) {
         httr_config <- httr::config(
             ssl_verifypeer = FALSE,
