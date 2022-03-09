@@ -61,6 +61,10 @@ To edit an existing post, add the `post_id` parameter.
 update_post( 'filename.Rmd', 'The post title', post_id = 49995, post_status = 'draft' )
 ```
 
+### Companion WordPress plugin
+
+An [RWP Companion](https://github.com/happyprime/rwp-companion) plugin is available that adds additional support for R Markdown documents on your WordPress site. It is currently in development and backward compatibility is not yet guaranteed.
+
 ## Development
 
 A few libraries are required to aid with development of this package.
